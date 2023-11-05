@@ -15,7 +15,7 @@ const env = require('dotenv').config({path: '../.env'});
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 var corsOptions = {
-    origin: "https://kelseyberta.github.io/giancarlos-web-app/"
+    origin: "https://giancarlos-web-app.onrender.com"
 }
 
 const calculateOrderAmount = (orderItems) => {
