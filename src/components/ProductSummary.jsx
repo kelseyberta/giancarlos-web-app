@@ -8,7 +8,7 @@ export const ProductSummary = () => {
     const total = cart.reduce((acc, product) => acc + (product.price * product.amount), 0);
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col overflow-y-auto max-h-96">
             {cart && cart.map((product, index) => {
                 return (
                     <ProductSummaryCard product={product} key={index} />
