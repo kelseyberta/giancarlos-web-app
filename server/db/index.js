@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/food-ordering', {
+    .connect('mongodb+srv://kelseyberta:Bruce2021@cluster0.dclygpn.mongodb.net/food-ordering', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
