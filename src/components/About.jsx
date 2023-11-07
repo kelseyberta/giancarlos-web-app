@@ -14,7 +14,7 @@ export const About = () => {
                     birthday, wedding, anniversary or get-together.
                     </p>
                 </div>
-                <div className="hidden md:flex items-center justify-center">
+                <div className="flex items-center justify-center">
                     <img src={aboutImage} alt="" className="w-[400px] h-[400px] object-cover" />
                 </div>
             </div>
