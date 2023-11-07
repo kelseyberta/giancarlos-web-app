@@ -46,7 +46,7 @@ const Register = () => {
         }
     });
         
-            fetch('http://localhost:8080/api/create-user', {
+            fetch('https://giancarlos.onrender.com/api/create-user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
