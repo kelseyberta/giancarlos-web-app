@@ -32,6 +32,8 @@ const Register = () => {
                 sessionStorage.setItem('User Id', uid);
                 sessionStorage.setItem('Auth token', response._tokenResponse.refreshToken)
                 window.dispatchEvent(new Event("storage"))
+                navigate('/');
+
             })
             .catch((error) => {
                 console.error('Error while signing up:', error);

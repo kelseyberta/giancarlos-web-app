@@ -40,19 +40,19 @@ console.log('State before:', state.products);
     },
     
     decrementProductAmount: (state, action) => {
-        const { _id } = action.payload;
-        const productIndex = state.products.findIndex(product => product._id === _id);
-        console.log('Action payload:', action.payload);
-console.log('State before:', state.products);
-        if (productIndex !== -1 && state.products[productIndex].amount > 0) {
-          state.products[productIndex] = {
-            ...state.products[productIndex],
-            amount: state.products[productIndex].amount - 1
-          };
-        }
-        console.log('State after:', state.products);
-
-    },
+      const { _id } = action.payload;
+      const productIndex = state.products.findIndex(product => product._id === _id);
+  
+      if (productIndex !== -1) {
+          const currentAmount = state.products[productIndex].amount;
+          if (currentAmount > 1) {
+              state.products[productIndex] = {
+                  ...state.products[productIndex],
+                  amount: currentAmount - 1
+              };
+          }
+      }
+  },
     
     removeFromCart: (state, action) => {
       const { _id } = action.payload;
