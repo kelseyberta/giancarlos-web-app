@@ -10,19 +10,20 @@ const Menu = () => {
     const products = useSelector(selectAllProducts);
     const [activeTab, setActiveTab] = useState('');
     const [activeTabIndex, setActiveTabIndex] = useState(0);
-    const [notification, setNotification] = useState("");
+    const [notification, setNotification] = useState(""); // Notification state
 
     useEffect(() => {
         dispatch(fetchProducts());
     }, []);
 
-    const onAddProduct = (product, comment) => { // Modified to accept comment data
-        const productWithComment = comment ? { ...product, comment } : product; // Include comment if available
-        dispatch(addToCart(productWithComment));
-        setNotification(`${product.name} added to the cart.`);
+    const onAddProduct = (product) => {
+        dispatch(addToCart(product));
+        setNotification(`${product.name} added to the cart.`); // Set the notification message
+        console.log(`Notification: ${notification}`);
+
         setTimeout(() => {
-            setNotification("");
-        }, 3000);
+            setNotification(""); // Clear the notification after a certain time
+        }, 3000); // Clear the notification after 3 seconds
     }
 
     const onTabSwitch = (newActiveTab) => {
@@ -38,18 +39,33 @@ const Menu = () => {
 
     return (
         <div className="bg-white relative">
-            {/* ... existing code ... */}
             {
-                products.products && products.products[activeTabIndex].products.map((product, index) => {
-                    return (
-                        <ProductDetailCard 
-                            key={index} 
-                            product={product} 
-                            onAddProduct={onAddProduct} 
-                        />
-                    )
-                })
+                products.status !== 'fulfilled' ? (
+                    <div>loading...</div>
+                ) : (
+                    <div className="menu-wrapper">
+                        {
+                            products.products && (
+                                <Tabs
+                                    list={products.products.map((product) => product.name.name)}
+                                    activeTab={activeTab}
+                                    onTabSwitch={onTabSwitch}
+                                />
+                            )
+                        }
+                        <div className="flex flex-wrap mx-3 justify-content-center">
+                            {
+                                products.products && products.products[activeTabIndex].products.map((product, index) => {
+                                    return (
+                                        <ProductDetailCard key={index} product={product} onAddProduct={onAddProduct} />
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                )
             }
+            {notification && <div className="notification fixed top-0 inset-x-0 mx-auto mt-4 w-80 bg-green-200 p-2 rounded-lg">{notification}</div>} {/* Display the notification */}
         </div>
     )
 }
