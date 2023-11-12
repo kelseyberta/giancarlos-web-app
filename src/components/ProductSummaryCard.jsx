@@ -12,6 +12,9 @@ export const ProductSummaryCard = ({ product }) => {
             <div className="product-info pr-4">
                 <h3>{product.name}</h3>
                 <p className="text-gray-600">{product.desciption}</p>
+                {product.comment && ( // Display the comment if available
+                    <p className="text-gray-600">{product.comment}</p>
+                )}
             </div>
             <div className="product-price-qt flex flex-col items-center justify-center">
                 <div className="price text-lg">{`$${product.price*product.amount}`}</div>
