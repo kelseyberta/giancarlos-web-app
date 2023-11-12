@@ -26,9 +26,7 @@ const ProductDetailCard = ({ product, onAddProduct }) => {
             <div className="w-full flex items-center justify-center">
                 <img src={product.imageUrl} className="w-40 h-40 rounded-xl object-cover hover:scale-150" alt={product.name}/>
             </div>
-            <div className="w-full flex items-center justify-center">
-                <AddToCart onAddProduct={addToCart} />
-                <div className="w-full">
+            <div className="w-full border-solid">
                     <label htmlFor="comment" className="text-xl">
                         Comment:
                     </label>
@@ -41,6 +39,9 @@ const ProductDetailCard = ({ product, onAddProduct }) => {
                         className="w-full border rounded p-2 mt-2"
                     />
                 </div>
+            <div className="w-full flex items-center justify-center">
+                <AddToCart onAddProduct={addToCart} />
+                
             </div>
         </div>
     )
