@@ -2,36 +2,16 @@ import { AddToCart } from "./AddToCart";
 import { useState } from 'react';
 
 const ProductDetailCard = ({ product, onAddProduct }) => {
-    const [customWriting, setCustomWriting] = useState('');
-
-    const handleCustomWritingChange = (e) => {
-        setCustomWriting(e.target.value);
-    };
+    const [comment, setComment] = useState('');
 
     const addToCart = () => {
-        onAddProduct({ ...product, customWriting }); // Add customWriting to the product data
+        onAddProduct(product, comment);
+    }
+
+    const handleCommentChange = (e) => {
+        setComment(e.target.value);
     };
 
-    const renderCustomWritingBox = () => {
-        if (product.category === "cakes") {
-            return (
-                <div className="w-full">
-                    <label htmlFor="customWriting" className="text-xl">
-                        Custom Writing:
-                    </label>
-                    <input
-                        type="text"
-                        id="customWriting"
-                        placeholder="Enter your custom message"
-                        value={customWriting}
-                        onChange={handleCustomWritingChange}
-                        className="w-full border rounded p-2 mt-2"
-                    />
-                </div>
-            );
-        }
-        return null; // Return null if not in the "cakes" category
-    };
     return (
         <div className="p-5  flex w-full rounded-lg bg-slate-50 justify-center" >
             <div className="flex flex-wrap items-center justify-between">
@@ -48,12 +28,22 @@ const ProductDetailCard = ({ product, onAddProduct }) => {
             </div>
             <div className="w-full flex items-center justify-center">
                 <AddToCart onAddProduct={addToCart} />
-                {renderCustomWritingBox()}
-
+                <div className="w-full">
+                    <label htmlFor="comment" className="text-xl">
+                        Comment:
+                    </label>
+                    <input
+                        type="text"
+                        id="comment"
+                        placeholder="Add a comment"
+                        value={comment}
+                        onChange={handleCommentChange}
+                        className="w-full border rounded p-2 mt-2"
+                    />
+                </div>
             </div>
         </div>
     )
-    
 }
 
 export default ProductDetailCard;
