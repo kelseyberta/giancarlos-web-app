@@ -25,6 +25,26 @@ const ProductDetailCard = ({ product, onAddProduct }) => {
             </div>
         </div>
     )
+    const renderCustomWritingBox = () => {
+        if (product.category === "cakes") {
+            return (
+                <div className="w-full">
+                    <label htmlFor="customWriting" className="text-xl">
+                        Custom Writing:
+                    </label>
+                    <input
+                        type="text"
+                        id="customWriting"
+                        placeholder="Enter your custom message"
+                        // You might want to handle the input value change here
+                        // For example: onChange={(e) => handleCustomWritingChange(e)}
+                        className="w-full border rounded p-2 mt-2"
+                    />
+                </div>
+            );
+        }
+        return null; // Return null if not in the "cakes" category
+    };
 }
 
 export default ProductDetailCard;

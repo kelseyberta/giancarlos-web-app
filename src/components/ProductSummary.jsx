@@ -14,6 +14,7 @@ export const ProductSummary = () => {
                     <ProductSummaryCard product={product} key={index} />
                 )
             })}
+            
             <div className="total text-xl">
                 Total: ${total.toFixed(2)}
             </div>
